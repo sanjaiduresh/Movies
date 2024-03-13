@@ -24,6 +24,7 @@ export default function AddMovie() {
         onSubmit: (values) => {
             console.log(values);
             // alert("submitted");
+            
         },
 
     });
