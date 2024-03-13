@@ -6,6 +6,8 @@ import Login from './Login';
 import Portal from './Portal';
 import Home from './Home';
 import PageNotfound from './PageNotfound';
+import Movie from './Movie';
+import MovieList from './MovieList';
 function App() {
   return (
     <div className="App">
@@ -17,6 +19,9 @@ function App() {
         <Route path='addmovie' element={<AddMovie />} />
         <Route path='home' element={<Home />} />
         </Route>
+        <Route path='/movie' element={<Movie />} />  
+        <Route path='/movielist' element={<MovieList />} /> 
+
         <Route path='*' element={<PageNotfound />} />
       </Routes>
     </div>

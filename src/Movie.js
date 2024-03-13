@@ -1,7 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
+import "./App.css"
+import Counter from "./Counter"
+import IconButton from '@mui/material/IconButton';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import InfoIcon from '@mui/icons-material/Info';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
 
-export default function Movie() {
+
+export default function Movie({movieTake}) {
+  const [show, setShow] = useState(false);
   return (
-    <div>Movie</div>
+    <>
+      <Card className='movie-container'>
+        <CardMedia className='movie-poster' image={movieTake.poster} />
+        <CardContent className='movie-spec'>
+          <Typography className='movie-name'>
+           {movieTake.name}
+
+            <IconButton color='primary' aria-label="Toggle-Description" onClick={() => setShow(!show)}>
+              {show ? <ExpandLessIcon fontSize='large' /> : <ExpandMoreIcon fontSize='large' />}
+            </IconButton>
+
+            <IconButton color='primary' aria-label="Toggle-Description">
+              <InfoIcon fontSize='small' />
+            </IconButton>
+            <Typography component="span" className='movie-rating'>
+              ⭐{movieTake.rating}
+            </Typography>
+          </Typography>
+
+        </CardContent>
+        {show ? <Typography className='movie-summary'>{movieTake.summary}</Typography> : null}
+
+        <CardActions>
+          <Counter />
+        </CardActions>
+      </Card>
+    </>
   )
 }

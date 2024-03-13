@@ -44,3 +44,30 @@
 .page-not-found>img{
   width: 100%;
 }
+
+.movie-container{
+  margin: 30px;
+  padding: 10px;
+  width: 300px;
+  box-shadow: 5px 10px 20px #FFFFFF;
+  border-radius: 10px;
+  background-color: azure;
+}
+.movie-poster{
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+.movie-spec{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.movie-summary{
+  text-align: justify;
+}
+.movie-list{
+  display: flex;
+  flex-wrap: wrap;
+}
