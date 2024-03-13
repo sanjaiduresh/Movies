@@ -8,9 +8,20 @@ import Home from './Home';
 import PageNotfound from './PageNotfound';
 import Movie from './Movie';
 import MovieList from './MovieList';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { useState } from 'react';
+
 function App() {
+  const [mode,setMode]=useState("light");
+const darkTheme = createTheme({
+  palette: {
+    mode: mode,
+  },
+});
   return (
     <div className="App">
+          <ThemeProvider theme={darkTheme}>
+
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path='/login' element={<Login />} />
@@ -24,6 +35,8 @@ function App() {
 
         <Route path='*' element={<PageNotfound />} />
       </Routes>
+      </ThemeProvider>
+
     </div>
   );
 }
