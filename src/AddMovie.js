@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useFormik } from 'formik';
 import * as yup from "yup";
+import { useNavigate } from 'react-router-dom';
 
 export default function AddMovie() {
     const movieValidationSchema = yup.object({
@@ -23,12 +24,21 @@ export default function AddMovie() {
         validationSchema: movieValidationSchema,
         onSubmit: (values) => {
             console.log(values);
-            // alert("submitted");
-            
+            addMovie(values)
         },
 
     });
-    return (
+    const navigate = useNavigate();
+    const addMovie =(values)=>{
+        fetch('https://65f16b99034bdbecc762724b.mockapi.io/movie',{
+            method:"POST",
+            body:JSON.stringify(values),
+            headers:{
+                "content-type":"application/json"
+            },
+        }).then(()=>navigate("/portal/movielist"));
+    }
+     return (
         <form className='addForm' onSubmit={formik.handleSubmit}>
             <h1>Add Movie</h1>
             <TextField id="outlined-basic"
