@@ -13,6 +13,8 @@ export default function MovieDetail() {
     },[]);
     console.log(movie);
   return (
-    <div>MovieDetail</div>
+    <div>
+        <iframe width="903" height="508" src={movie.trailer} title="Demon Slayer -Kimetsu no Yaiba- The Movie: Mugen Train - Official Sub Trailer (English Subtitles)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
   )
 }
