@@ -10,10 +10,12 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 export default function Movie({movieTake}) {
   const [show, setShow] = useState(false);
+  const navigate=useNavigate();
   return (
     <>
       <Card className='movie-container'>
@@ -26,7 +28,7 @@ export default function Movie({movieTake}) {
               {show ? <ExpandLessIcon fontSize='large' /> : <ExpandMoreIcon fontSize='large' />}
             </IconButton>
 
-            <IconButton color='primary' aria-label="Toggle-Description">
+            <IconButton color='primary' aria-label="Toggle-Description" onClick={()=>navigate(`/portal/view/${movieTake.id}`)}>
               <InfoIcon fontSize='small' />
             </IconButton>
             <Typography component="span" className='movie-rating'>

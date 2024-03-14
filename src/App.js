@@ -11,7 +11,7 @@ import MovieList from './MovieList';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useState } from 'react';
 import Paper from '@mui/material/Paper';
-
+import MovieDetail from './MovieDetail';
 
 function App() {
   const [mode, setMode] = useState("dark");
@@ -31,11 +31,9 @@ function App() {
             <Route path='/portal' element={<Portal mode={mode} setMode={setMode} />}>
               <Route path='addmovie' element={<AddMovie />} />
               <Route path='home' element={<Home />} />
-              
-            <Route path='movie' element={<Movie />} />
-            <Route path='movielist' element={<MovieList />} />
+              <Route path='movielist' element={<MovieList />} />
+              <Route path='view/:id' element={<MovieDetail/>}/>
             </Route>
-
             <Route path='*' element={<PageNotfound />} />
           </Routes>
         </Paper>
