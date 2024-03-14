@@ -14,6 +14,7 @@ export default function Topbar({mode,setMode}) {
         <Toolbar>
           <Button color="inherit">Logout</Button>
           <Button variant="inherit" onClick={()=>navigate("/portal/home")}>Home</Button>
+          <Button variant="inherit" onClick={()=>navigate("/portal/movielist")}>Movies</Button>
           <Button variant="inherit" onClick={()=>navigate("/portal/addmovie")}>AddMovie</Button>
           <Button style={{marginLeft:"60%"}} startIcon={mode==="light"?<Brightness4Icon />:<Brightness7Icon />} color='inherit'
           onClick={()=>setMode(mode==="light" ? "dark" : "light")}>
