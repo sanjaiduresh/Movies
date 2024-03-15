@@ -20,7 +20,7 @@ export default function MovieList() {
     <div className='movie-list'>
         {movie.map((list,index)=>(
             <div key={index}>
-                <Movie movieTake={list} />
+                <Movie getMovies={getMovies} movieTake={list} />
             </div>
         ))}
     </div>

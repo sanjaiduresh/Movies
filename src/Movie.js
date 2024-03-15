@@ -14,9 +14,16 @@ import { useNavigate } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-export default function Movie({movieTake}) {
+export default function Movie({movieTake , getMovies}) {
   const [show, setShow] = useState(false);
   const navigate=useNavigate();
+ 
+  const deleteMovie=(id)=>{
+    fetch(`https://65f16b99034bdbecc762724b.mockapi.io/movie/${id}`,{
+      method:"DELETE",
+    }).then(()=>getMovies())
+    .then(()=>alert("This card gets deleted now."))
+  }
   return (
     <>
       <Card className='movie-container'>
@@ -51,7 +58,7 @@ export default function Movie({movieTake}) {
           <IconButton 
           sx={{marginLeft:"auto"}}
           aria-label='editMovie'>
-            <DeleteIcon color="secondary"/>
+            <DeleteIcon color="secondary" onClick={()=>deleteMovie(movieTake.id)}/>
           </IconButton>
         </CardActions>
       </Card>
