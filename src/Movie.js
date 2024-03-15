@@ -10,8 +10,9 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Navigate, useNavigate } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function Movie({movieTake}) {
   const [show, setShow] = useState(false);
@@ -41,6 +42,17 @@ export default function Movie({movieTake}) {
 
         <CardActions>
           <Counter />
+          <IconButton 
+          sx={{marginLeft:"auto"}}
+          aria-label='editMovie'
+          onClick={()=>navigate(`/portal/edit/${movieTake.id}`)}>
+            <EditIcon color="secondary"/>
+          </IconButton>
+          <IconButton 
+          sx={{marginLeft:"auto"}}
+          aria-label='editMovie'>
+            <DeleteIcon color="secondary"/>
+          </IconButton>
         </CardActions>
       </Card>
     </>

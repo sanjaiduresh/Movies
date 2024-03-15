@@ -6,12 +6,12 @@ import Login from './Login';
 import Portal from './Portal';
 import Home from './Home';
 import PageNotfound from './PageNotfound';
-import Movie from './Movie';
 import MovieList from './MovieList';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useState } from 'react';
 import Paper from '@mui/material/Paper';
 import MovieDetail from './MovieDetail';
+import EditMovies from './EditMovies';
 
 function App() {
   const [mode, setMode] = useState("dark");
@@ -33,6 +33,7 @@ function App() {
               <Route path='home' element={<Home />} />
               <Route path='movielist' element={<MovieList />} />
               <Route path='view/:id' element={<MovieDetail/>}/>
+              <Route path='edit/:id' element={<EditMovies />} />
             </Route>
             <Route path='*' element={<PageNotfound />} />
           </Routes>
