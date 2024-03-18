@@ -13,13 +13,14 @@ import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { api } from './global';
 
 export default function Movie({movieTake , getMovies}) {
   const [show, setShow] = useState(false);
   const navigate=useNavigate();
  
   const deleteMovie=(id)=>{
-    fetch(`https://65f16b99034bdbecc762724b.mockapi.io/movie/${id}`,{
+    fetch(`${api}/delete/${movieTake._id}`,{
       method:"DELETE",
     }).then(()=>getMovies())
     .then(()=>alert("This card gets deleted now."))
@@ -36,7 +37,7 @@ export default function Movie({movieTake , getMovies}) {
               {show ? <ExpandLessIcon fontSize='large' /> : <ExpandMoreIcon fontSize='large' />}
             </IconButton>
 
-            <IconButton color='primary' aria-label="Toggle-Description" onClick={()=>navigate(`/portal/view/${movieTake.id}`)}>
+            <IconButton color='primary' aria-label="Toggle-Description" onClick={()=>navigate(`/portal/view/${movieTake._id}`)}>
               <InfoIcon fontSize='small' />
             </IconButton>
             <Typography component="span" className='movie-rating'>
@@ -52,13 +53,13 @@ export default function Movie({movieTake , getMovies}) {
           <IconButton 
           sx={{marginLeft:"auto"}}
           aria-label='editMovie'
-          onClick={()=>navigate(`/portal/edit/${movieTake.id}`)}>
+          onClick={()=>navigate(`/portal/edit/${movieTake._id}`)}>
             <EditIcon color="secondary"/>
           </IconButton>
           <IconButton 
           sx={{marginLeft:"auto"}}
           aria-label='editMovie'>
-            <DeleteIcon color="secondary" onClick={()=>deleteMovie(movieTake.id)}/>
+            <DeleteIcon color="secondary" onClick={()=>deleteMovie(movieTake._id)}/>
           </IconButton>
         </CardActions>
       </Card>
