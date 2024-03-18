@@ -2,12 +2,15 @@ import React from 'react'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useFormik } from 'formik';
-import { Link } from "react-router-dom";
+import { Link, json, useNavigate } from "react-router-dom";
 import * as yup from "yup";
+import { api } from './global';
 
 export default function Login() {
+    const navigate=useNavigate();
+
     const LoginValidationSchema = yup.object({
-        email: yup.string().required().email(),
+        email: yup.string().required(),
         password: yup.string().required(),
     });
     const formik = useFormik({
@@ -17,10 +20,27 @@ export default function Login() {
         },
         validationSchema: LoginValidationSchema,
         onSubmit: (values) => {
-            console.log(values);
+            login(values);
         },
 
     });
+
+    const login = async(values)=>{
+        let data = await fetch(`${api}/login`,{
+            method:"POST",
+            body : JSON.stringify(values),
+            headers:{"Content-Type":"application/json"},
+        })
+        if(data.status === 400){
+            const result = await data.json();
+            alert(result.message);
+        }else{
+            const result = await data.json();
+            localStorage.setItem("storetoken",result.token);
+            alert("Login succesfull");
+            navigate("/portal/home");
+        }
+    }
     return (
         <form className='login' onSubmit={formik.handleSubmit}>
             <h1>Login</h1>
@@ -46,7 +66,7 @@ export default function Login() {
                 error={formik.touched.password && formik.errors.password}
                 helperText={formik.touched.password && formik.errors.password ? formik.errors.password : null}
             />
-            <Button variant="contained" type='submit'>Submit</Button>
+            <Button variant="contained" type='submit'>Login</Button>
             <h4>Don't have an account<Link to="/register">Register</Link></h4>
         </form>
     )

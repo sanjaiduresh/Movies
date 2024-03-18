@@ -2,8 +2,9 @@ import React from 'react'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useFormik } from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as yup from "yup";
+import { api } from './global';
 
 export default function Register() {
     const registerValidationSchema = yup.object({
@@ -11,6 +12,7 @@ export default function Register() {
         email: yup.string().required().email(),
         password: yup.string().required(),
     });
+    const navigate=useNavigate();
     const formik = useFormik({
         initialValues: {
             username: "",
@@ -19,10 +21,19 @@ export default function Register() {
         },
         validationSchema: registerValidationSchema,
         onSubmit: (values) => {
-            console.log(values);
+            register(values);
         },
 
     });
+    const register=(values)=>{
+        fetch(`${api}/register`,{
+            method:"POST",
+            body:JSON.stringify(values),
+            headers:{"Content-Type":"application/json"}
+        }).then(()=>{
+            alert("Successfully Registered");
+        }).then(()=>navigate("/"))
+    }
     return (
         <form className='register' onSubmit={formik.handleSubmit}>
             <h1>Register</h1>
@@ -58,7 +69,7 @@ export default function Register() {
                 error={formik.touched.password && formik.errors.password}
                 helperText={formik.touched.password && formik.errors.password ? formik.errors.password : null}
             />
-            <Button variant="contained" type='submit'>Submit</Button>
+            <Button variant="contained" type='submit'>Register</Button>
             <h4>Already have an account<Link to="/login">Login</Link></h4>
         </form>
     )

@@ -8,6 +8,9 @@ export default function MovieList() {
     const getMovies=()=>{
         fetch(`${api}/get`, {
             method:"GET",
+            headers:{
+                "backend-token":localStorage.getItem("storetoken"),
+            }
         })
         .then((data)=>data.json())
         .then((mvs)=>setMovie(mvs));

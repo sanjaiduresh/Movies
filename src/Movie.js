@@ -38,7 +38,7 @@ export default function Movie({movieTake , getMovies}) {
             </IconButton>
 
             <IconButton color='primary' aria-label="Toggle-Description" onClick={()=>navigate(`/portal/view/${movieTake._id}`)}>
-              <InfoIcon fontSize='small' />
+              <InfoIcon fontSize='small' color="inherit"/>
             </IconButton>
             <Typography component="span" className='movie-rating'>
               ⭐{movieTake.rating}

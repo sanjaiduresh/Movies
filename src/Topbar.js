@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
+import { Logout } from './Logout';
 
 export default function Topbar({mode,setMode}) {
     const navigate=useNavigate();
@@ -12,7 +13,6 @@ export default function Topbar({mode,setMode}) {
    
       <AppBar position="static">
         <Toolbar>
-          <Button color="inherit">Logout</Button>
           <Button variant="inherit" onClick={()=>navigate("/portal/home")}>Home</Button>
           <Button variant="inherit" onClick={()=>navigate("/portal/movielist")}>Movies</Button>
           <Button variant="inherit" onClick={()=>navigate("/portal/addmovie")}>AddMovie</Button>
@@ -20,6 +20,7 @@ export default function Topbar({mode,setMode}) {
           onClick={()=>setMode(mode==="light" ? "dark" : "light")}>
             {mode==="light"? "Dark":"Light"}Mode
           </Button>
+          <Button color="inherit" onClick={()=>Logout()}>Logout</Button>
         </Toolbar>
       </AppBar>
   );
