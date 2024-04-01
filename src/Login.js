@@ -2,7 +2,7 @@ import React from 'react'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useFormik } from 'formik';
-import { Link, json, useNavigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { api } from './global';
 
@@ -22,7 +22,6 @@ export default function Login() {
         onSubmit: (values) => {
             login(values);
         },
-
     });
 
     const login = async(values)=>{
